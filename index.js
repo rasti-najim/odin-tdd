@@ -9,4 +9,19 @@ function reverseString(str) {
   return str.split("").reverse().join("");
 }
 
-module.exports = { capilize, reverseString };
+function calculator() {
+  return {
+    add: (a, b) => a + b,
+    subtract: (a, b) => a - b,
+    divide: (a, b) => {
+      if (b !== 0) {
+        return a / b;
+      } else {
+        throw new Error("Cannot divide by zero");
+      }
+    },
+    multiply: (a, b) => a * b,
+  };
+}
+
+module.exports = { capilize, reverseString, calculator };
