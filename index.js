@@ -60,4 +60,18 @@ function caesarCipher() {
   return { encrypt, decrypt };
 }
 
-module.exports = { capilize, reverseString, calculator, caesarCipher };
+function analyzeArray(arr) {
+  let average = arr.reduce((acc, curr) => acc + curr, 0) / arr.length;
+  let min = Math.min(...arr);
+  let max = Math.max(...arr);
+  let length = arr.length;
+  return { average, min, max, length };
+}
+
+module.exports = {
+  capilize,
+  reverseString,
+  calculator,
+  caesarCipher,
+  analyzeArray,
+};

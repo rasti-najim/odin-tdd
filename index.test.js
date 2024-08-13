@@ -3,6 +3,7 @@ const {
   reverseString,
   calculator,
   caesarCipher,
+  analyzeArray,
 } = require("./index");
 
 test("works", () => {
@@ -143,5 +144,61 @@ describe("caesarCipher", () => {
     expect(decrypt("hello", 0)).toBe("hello");
     expect(decrypt("abc", 3)).toBe("xyz");
     expect(decrypt("KhOOr", 3)).toBe("HeLLo");
+  });
+});
+
+describe("analyze", () => {
+  it("returns an object", () => {
+    expect(typeof analyzeArray([1, 8, 3, 4, 2, 6])).toBe("object");
+  });
+
+  it("works with array of positive numbers", () => {
+    expect(analyzeArray([1, 8, 3, 4, 2, 6])).toEqual({
+      average: 4,
+      min: 1,
+      max: 8,
+      length: 6,
+    });
+
+    expect(analyzeArray([1, 1, 1, 1, 1, 1])).toEqual({
+      average: 1,
+      min: 1,
+      max: 1,
+      length: 6,
+    });
+  });
+
+  it("works with array of negative numbers", () => {
+    expect(analyzeArray([-1, -8, -3, -4, -2, -6])).toEqual({
+      average: -4,
+      min: -8,
+      max: -1,
+      length: 6,
+    });
+
+    expect(analyzeArray([-1, -1, -1, -1, -1, -1])).toEqual({
+      average: -1,
+      min: -1,
+      max: -1,
+      length: 6,
+    });
+  });
+
+  it("works with zeros", () => {
+    expect(analyzeArray([0, 0, 0, 0, 0, 0])).toEqual({
+      average: 0,
+      min: 0,
+      max: 0,
+      length: 6,
+    });
+  });
+
+  it("works with empty array", () => {
+    expect(analyzeArray([])).toEqual({
+      average: NaN,
+      min: Infinity,
+      max: -Infinity,
+      length: 0,
+    });
   });
 });
