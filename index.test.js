@@ -1,4 +1,9 @@
-const { capilize, reverseString, calculator } = require("./index");
+const {
+  capilize,
+  reverseString,
+  calculator,
+  caesarCipher,
+} = require("./index");
 
 test("works", () => {
   expect(1).toBe(1);
@@ -119,5 +124,24 @@ describe("calculator", () => {
     expect(multiply(1, 0)).toBe(0);
     expect(multiply(0, 0)).toBe(0);
     expect(multiply(-10, -20)).toBe(200);
+  });
+});
+
+describe("caesarCipher", () => {
+  it("encrypts", () => {
+    const { encrypt } = caesarCipher();
+    expect(encrypt("hello", 3)).toBe("khoor");
+    expect(encrypt("xyz", 3)).toBe("abc");
+    expect(encrypt("hello", 0)).toBe("hello");
+    expect(encrypt("HeLLo", 3)).toBe("KhOOr");
+    expect(encrypt("Hello, World!", 3)).toBe("Khoor, Zruog!");
+  });
+
+  it("decrypts", () => {
+    const { decrypt } = caesarCipher();
+    expect(decrypt("khoor", 3)).toBe("hello");
+    expect(decrypt("hello", 0)).toBe("hello");
+    expect(decrypt("abc", 3)).toBe("xyz");
+    expect(decrypt("KhOOr", 3)).toBe("HeLLo");
   });
 });
